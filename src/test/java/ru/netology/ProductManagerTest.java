@@ -63,4 +63,39 @@ public class ProductManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSearchByMaker() {
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product5);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product6);
+
+
+        Product[] expected = {product4};
+        Product[] actual = manager.searchBy("china");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByAuthor() {
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product5);
+        manager.add(product3);
+        manager.add(product4);
+        manager.add(product6);
+
+
+        Product[] expected = {product3};
+        Product[] actual = manager.searchBy("роулинг");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
