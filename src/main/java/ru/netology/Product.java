@@ -20,6 +20,10 @@ public class Product {
         this.price = price;
     }
 
+    public boolean matches(String search) {
+        return getName().contains(search);
+    }
+
     public void setId(int id) {
         this.id = id;
     }
