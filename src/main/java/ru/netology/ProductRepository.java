@@ -18,7 +18,7 @@ public class ProductRepository {
             tmp[tmp.length - 1] = product;
             setProducts(tmp);
         } else {
-            throw new AlreadyExistsException("Product with ID: " + product.getId() +  " already exists");
+            throw new AlreadyExistsException("Product with ID: " + product.getId() + " already exists");
 
         }
     }
@@ -31,21 +31,21 @@ public class ProductRepository {
         return null;
     }
 
-    public void removeById(int id){
+    public void removeById(int id) {
         if (findById(id) == null) {
             throw new NotFoundException("Element with id: " + id + " not found");
 
-        } else  {
-                Product[] tmp = new Product[getProducts().length - 1];
-                int copyToIndex = 0;
-                for (Product product : products) {
-                    if (product.getId() != id) {
-                        tmp[copyToIndex] = product;
-                        copyToIndex++;
-                    }
+        } else {
+            Product[] tmp = new Product[getProducts().length - 1];
+            int copyToIndex = 0;
+            for (Product product : products) {
+                if (product.getId() != id) {
+                    tmp[copyToIndex] = product;
+                    copyToIndex++;
                 }
-                products = tmp;
             }
+            products = tmp;
+        }
     }
 
 
