@@ -58,10 +58,9 @@ public class ProductRepositoryTest {
         repo.save(product5);
         repo.save(product6);
 
-        Product expected = null;
         Product actual = repo.findById(8);
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertNull(actual);
 
     }
 
@@ -95,12 +94,7 @@ public class ProductRepositoryTest {
         repo.save(product5);
         repo.save(product6);
 
-        repo.removeById(7);
-
-        Product[] expected = {product1, product2, product3, product4, product5, product6};
-        Product[] actual = repo.getProducts();
-
-        Assertions.assertArrayEquals(expected, actual);
+        Assertions.assertThrows(NotFoundException.class, () -> repo.removeById(8));
 
     }
 

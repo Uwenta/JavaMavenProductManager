@@ -22,22 +22,25 @@ public class ProductRepository {
         for (Product product : products)
             if (product.getId() == id) {
                 return product;
-            } else ;
+            }
         return null;
     }
 
-    public void removeById(int id) {
-        if (findById(id) != null) {
-            Product[] tmp = new Product[getProducts().length - 1];
-            int copyToIndex = 0;
-            for (Product product : products) {
-                if (product.getId() != id) {
-                    tmp[copyToIndex] = product;
-                    copyToIndex++;
+    public void removeById(int id){
+        if (findById(id) == null) {
+            throw new NotFoundException("Element with id: " + id + " not found");
+
+        } else  {
+                Product[] tmp = new Product[getProducts().length - 1];
+                int copyToIndex = 0;
+                for (Product product : products) {
+                    if (product.getId() != id) {
+                        tmp[copyToIndex] = product;
+                        copyToIndex++;
+                    }
                 }
+                products = tmp;
             }
-            products = tmp;
-        }
     }
 
 
