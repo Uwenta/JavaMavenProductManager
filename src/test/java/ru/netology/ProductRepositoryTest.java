@@ -13,6 +13,7 @@ public class ProductRepositoryTest {
     Smartphone product4 = new Smartphone(4, "samsung A-01", 7000, "samsung ltd, china");
     Product product5 = new Product(5, "стул", 8000);
     Product product6 = new Product(6, "стул", 5000);
+    Product product7 = new Product(5, "стол", 6000);
 
 
     @Test
@@ -30,6 +31,17 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSaveProductWithAlreadyExistsId() {
+
+        repo.save(product4);
+        repo.save(product5);
+
+        Assertions.assertThrows(AlreadyExistsException.class, () -> repo.save(product7));
+
+    }
+
 
     @Test
     public void shouldFindById() {
@@ -97,6 +109,5 @@ public class ProductRepositoryTest {
         Assertions.assertThrows(NotFoundException.class, () -> repo.removeById(8));
 
     }
-
 
 }

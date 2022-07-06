@@ -10,12 +10,17 @@ public class ProductRepository {
     }
 
     public void save(Product product) {
-        Product[] tmp = new Product[getProducts().length + 1];
-        for (int i = 0; i < getProducts().length; i++) {
-            tmp[i] = getProducts()[i];
+        if (null == findById(product.getId())) {
+            Product[] tmp = new Product[getProducts().length + 1];
+            for (int i = 0; i < getProducts().length; i++) {
+                tmp[i] = getProducts()[i];
+            }
+            tmp[tmp.length - 1] = product;
+            setProducts(tmp);
+        } else {
+            throw new AlreadyExistsException("Product with ID: " + product.getId() +  " already exists");
+
         }
-        tmp[tmp.length - 1] = product;
-        setProducts(tmp);
     }
 
     public Product findById(int id) {
